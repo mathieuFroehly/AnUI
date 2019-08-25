@@ -135,7 +135,7 @@ function CreateConfigurationPanel()
 
     -- ReputationRepairLimit
     local ReputSliderLbl = ConfigurationPanel:CreateFontString("ReputSliderLbl","ARTWORK","GameFontNormal")
-	ReputSliderLbl:SetPoint("TOPLEFT", 180, -100)
+	ReputSliderLbl:SetPoint("TOPLEFT", 200, -100)
     
     local ReputSlider = CreateFrame("Slider", pre .. "ReputSlider", ConfigurationPanel, "OptionsSliderTemplate")
 	ReputSlider:SetMinMaxValues(4,8)
