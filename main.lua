@@ -130,17 +130,17 @@ function CreateConfigurationPanel()
 
     -- UseGuildRepair
     local UseGuildRepairBtn = CreateFrame("CheckButton", pre .. "UseGuildRepairBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
-    UseGuildRepairBtn:SetPoint("TOPLEFT", 10, -60)
+    UseGuildRepairBtn:SetPoint("TOPLEFT", 30, -60)
     getglobal(UseGuildRepairBtn:GetName().."Text"):SetText(L.UseGuildRepairBtn.text)
 
     -- ReputationRepairLimit
     local ReputSliderLbl = ConfigurationPanel:CreateFontString("ReputSliderLbl","ARTWORK","GameFontNormal")
-	ReputSliderLbl:SetPoint("TOPLEFT", 180, -100)
+	ReputSliderLbl:SetPoint("TOPLEFT", 200, -100)
     
     local ReputSlider = CreateFrame("Slider", pre .. "ReputSlider", ConfigurationPanel, "OptionsSliderTemplate")
 	ReputSlider:SetMinMaxValues(4,8)
 	ReputSlider:SetValueStep(1)
-    ReputSlider:SetPoint("TOPLEFT", 20, -100)
+    ReputSlider:SetPoint("TOPLEFT", 40, -100)
     ReputSlider.tooltip = "L.ReputSlider.tooltip"
 	getglobal(ReputSlider:GetName().."Text"):SetText(L.ReputSlider.text)
 	getglobal(ReputSlider:GetName().."High"):SetText(L.REPUTATIONS[8])
