@@ -1,0 +1,10 @@
+## Interface: 80200
+## Title: orbSellAndRepair
+## Notes: Automatically sell your gray items and repair your equipment when you visit a merchant.
+## Author: Orbey
+## Version: 1.0.0
+## SavedVariablesPerCharacter: orbSellAndRepair_settings
+
+locales/en.lua
+locales/fr.lua
+main.lua
