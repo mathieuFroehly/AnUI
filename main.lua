@@ -128,24 +128,14 @@ function CreateConfigurationPanel()
     AutoRepairBtn:SetPoint("TOPLEFT", 10, -40)
     getglobal(AutoRepairBtn:GetName().."Text"):SetText(L.AutoRepairBtn.text)
 
-    local posY = -60
-
-    -- UseGuildRepair
-    if CanGuildBankRepair ~= nil then
-        local UseGuildRepairBtn = CreateFrame("CheckButton", pre .. "UseGuildRepairBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
-        UseGuildRepairBtn:SetPoint("TOPLEFT", 30, posY)
-        getglobal(UseGuildRepairBtn:GetName().."Text"):SetText(L.UseGuildRepairBtn.text)
-        posY = -100
-    end
-
     -- ReputationRepairLimit
     local ReputSliderLbl = ConfigurationPanel:CreateFontString("ReputSliderLbl","ARTWORK","GameFontNormal")
-	ReputSliderLbl:SetPoint("TOPLEFT", 200, posY)
+	ReputSliderLbl:SetPoint("TOPLEFT", 200, -80)
     
     local ReputSlider = CreateFrame("Slider", pre .. "ReputSlider", ConfigurationPanel, "OptionsSliderTemplate")
 	ReputSlider:SetMinMaxValues(4,8)
 	ReputSlider:SetValueStep(1)
-    ReputSlider:SetPoint("TOPLEFT", 40, posY)
+    ReputSlider:SetPoint("TOPLEFT", 40, -80)
     ReputSlider.tooltip = "L.ReputSlider.tooltip"
 	getglobal(ReputSlider:GetName().."Text"):SetText(L.ReputSlider.text)
 	getglobal(ReputSlider:GetName().."High"):SetText(L.REPUTATIONS[8])
@@ -155,9 +145,16 @@ function CreateConfigurationPanel()
         ReputSliderLbl:SetText(L.REPUTATIONS[iReput])
     end)
 
+    -- UseGuildRepair
+    if CanGuildBankRepair ~= nil then
+        local UseGuildRepairBtn = CreateFrame("CheckButton", pre .. "UseGuildRepairBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
+        UseGuildRepairBtn:SetPoint("TOPLEFT", 30, -110)
+        getglobal(UseGuildRepairBtn:GetName().."Text"):SetText(L.UseGuildRepairBtn.text)
+    end
+
     -- VendorGreys
     local VendorGreysBtn = CreateFrame("CheckButton", pre .. "VendorGreysBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
-    VendorGreysBtn:SetPoint("TOPLEFT", 10, -130)
+    VendorGreysBtn:SetPoint("TOPLEFT", 10, -140)
     getglobal(VendorGreysBtn:GetName().."Text"):SetText(L.VendorGreysBtn.text)
     
     -- save
