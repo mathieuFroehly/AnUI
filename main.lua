@@ -24,9 +24,6 @@ local function LoadSettings()
     if orbSellAndRepair_settings == nil then
         orbSellAndRepair_settings = {}
     end
-    if orbSellAndRepair_settings == nil then
-        orbSellAndRepair_settings = {}
-    end
 
     local function CopyDefaults(src, dst)
         if type(src) ~= "table" then
@@ -85,7 +82,10 @@ local function RegisterAutoRepairEvents()
                     elseif repairAllCost > GetMoney() then
                         selfMessage(L.REPAIR_MONEY)
                     else
-                        local repairFromGuild = IsInGuild() and CanGuildBankRepair() and orbSellAndRepair_settings.UseGuildRepair
+                        local repairFromGuild = orbSellAndRepair_settings.UseGuildRepair 
+                            and IsInGuild() 
+                            and CanGuildBankRepair ~= nil 
+                            and CanGuildBankRepair()
                         RepairAllItems(repairFromGuild)
                         selfMessage(L.REPAIR_OK .. GetCoinTextureString(repairAllCost, " "));
                     end
@@ -129,9 +129,11 @@ function CreateConfigurationPanel()
     getglobal(AutoRepairBtn:GetName().."Text"):SetText(L.AutoRepairBtn.text)
 
     -- UseGuildRepair
-    local UseGuildRepairBtn = CreateFrame("CheckButton", pre .. "UseGuildRepairBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
-    UseGuildRepairBtn:SetPoint("TOPLEFT", 30, -60)
-    getglobal(UseGuildRepairBtn:GetName().."Text"):SetText(L.UseGuildRepairBtn.text)
+    if CanGuildBankRepair ~= nil then
+        local UseGuildRepairBtn = CreateFrame("CheckButton", pre .. "UseGuildRepairBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
+        UseGuildRepairBtn:SetPoint("TOPLEFT", 30, -60)
+        getglobal(UseGuildRepairBtn:GetName().."Text"):SetText(L.UseGuildRepairBtn.text)
+    end
 
     -- ReputationRepairLimit
     local ReputSliderLbl = ConfigurationPanel:CreateFontString("ReputSliderLbl","ARTWORK","GameFontNormal")
@@ -158,7 +160,9 @@ function CreateConfigurationPanel()
     -- save
     ConfigurationPanel.okay = function(self)
         orbSellAndRepair_settings.AutoRepair = AutoRepairBtn:GetChecked()
-        orbSellAndRepair_settings.UseGuildRepair = UseGuildRepairBtn:GetChecked()
+        if CanGuildBankRepair ~= nil then
+            orbSellAndRepair_settings.UseGuildRepair = UseGuildRepairBtn:GetChecked()
+        end
         orbSellAndRepair_settings.ReputationRepairLimit = math.floor(ReputSlider:GetValue())
         orbSellAndRepair_settings.VendorGreys = VendorGreysBtn:GetChecked()
     end
@@ -166,7 +170,9 @@ function CreateConfigurationPanel()
     -- cancel
     ConfigurationPanel.cancel = function(self)
         AutoRepairBtn:SetChecked(orbSellAndRepair_settings.AutoRepair)
-        UseGuildRepairBtn:SetChecked(orbSellAndRepair_settings.UseGuildRepair)
+        if CanGuildBankRepair ~= nil then
+            UseGuildRepairBtn:SetChecked(orbSellAndRepair_settings.UseGuildRepair)
+        end
         ReputSlider:SetValue(orbSellAndRepair_settings.ReputationRepairLimit)
         VendorGreysBtn:SetChecked(orbSellAndRepair_settings.VendorGreys)
     end

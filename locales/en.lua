@@ -30,7 +30,7 @@ L.UseGuildRepairBtn = {
 }
 
 L.ReputSlider = {
-    text = "Reputation : minimal",
+    text = "Reputation: minimal",
     tooltip = "Minimal reputation required to repair",
 }
 
