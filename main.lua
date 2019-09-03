@@ -146,8 +146,9 @@ function CreateConfigurationPanel()
     end)
 
     -- UseGuildRepair
+    local UseGuildRepairBtn
     if CanGuildBankRepair ~= nil then
-        local UseGuildRepairBtn = CreateFrame("CheckButton", pre .. "UseGuildRepairBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
+        UseGuildRepairBtn = CreateFrame("CheckButton", pre .. "UseGuildRepairBtn", ConfigurationPanel, "ChatConfigCheckButtonTemplate")
         UseGuildRepairBtn:SetPoint("TOPLEFT", 30, -110)
         getglobal(UseGuildRepairBtn:GetName().."Text"):SetText(L.UseGuildRepairBtn.text)
     end
